@@ -2,8 +2,28 @@ domain: yasensim.net
 layout:
 - go.kubebuilder.io/v3
 plugins:
+  deploy-image.go.kubebuilder.io/v1-alpha:
+    resources:
+    - domain: yasensim.net
+      group: cache
+      kind: Memcaches
+      options:
+        containerCommand: memcached,-m=64,modern,-v
+        image: memcached:1.4.36-alpine
+        runAsUser: "1001"
+      version: v1alpha1
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: memcached-operator
 repo: github.com/yasensim/memcached-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: yasensim.net
+  group: cache
+  kind: Memcaches
+  path: github.com/yasensim/memcached-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

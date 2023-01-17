@@ -1,0 +1,27 @@
+# permissions for end users to view memcaches.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: memcaches-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: memcached-operator
+    app.kubernetes.io/part-of: memcached-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: memcaches-viewer-role
+rules:
+- apiGroups:
+  - cache.yasensim.net
+  resources:
+  - memcaches
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - cache.yasensim.net
+  resources:
+  - memcaches/status
+  verbs:
+  - get
