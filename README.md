@@ -30,6 +30,9 @@ change cache_v1alpha1_memcaches.yaml to have 3 replicas
 `kubectl delete -f config/samples/cache_v1alpha1_memcaches.yaml`  
 `make undeploy`  
 `kubectl config set-context --current --namespace=default`  
-
-
-
+  
+  
+11. Install OLM in the cluster (optional)  
+`operator-sdk olm install`  
+  
+  
